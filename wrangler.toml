@@ -1,3 +1,7 @@
 name = "spbb-cc"
 compatibility_date = "2026-06-05"
-pages_build_output_dir = "public"
+
+# Static-assets-only Worker (no Worker script). `wrangler deploy` uploads ./public
+# and serves it directly. _headers and _redirects in that dir are honoured.
+[assets]
+directory = "./public"

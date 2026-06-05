@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A single static landing page for the **Scotts Park Bike Bus** — a parent-led group that cycles to Scotts Park Primary School (Bromley) every Friday. The site is one self-contained file, `public/index.html`, hosted on **Cloudflare Pages**.
+A single static landing page for the **Scotts Park Bike Bus** — a parent-led group that cycles to Scotts Park Primary School (Bromley) every Friday. The site is one self-contained file, `public/index.html`, hosted on **Cloudflare Workers Static Assets**.
 
 ## Architecture
 
@@ -28,8 +28,13 @@ There is **no build step** — it's a plain static site. Preview by opening `pub
 
 ## Deployment
 
-Hosted on Cloudflare Pages, project name `spbb-cc`, serving the `public/` directory (`pages_build_output_dir` in `wrangler.toml`). Two paths:
-- **Git integration** (primary): pushes to `main` on GitHub auto-deploy. Build command is empty; output directory is `public`.
-- **Direct upload**: `npm run deploy` → `wrangler pages deploy public`.
+Hosted on Cloudflare Workers Static Assets, Worker name `spbb-cc`. `wrangler.toml`
+declares `[assets] directory = "./public"` and **no** `main` — it's an assets-only
+Worker, so `wrangler deploy` just uploads `public/` and serves it. `public/_headers`
+sets caching + security headers and is honoured by static assets.
+- **Git integration** (primary): pushes to `main` on GitHub trigger a Cloudflare build that runs `npx wrangler deploy`.
+- **Direct upload**: `npm run deploy` → `wrangler deploy`.
+
+Validate config changes without deploying via `npx wrangler deploy --dry-run`.
 
 Do not add a framework or build tooling unless the site genuinely outgrows a single static file — the value here is that it's zero-dependency and instant to deploy.

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scotts Park Bike Bus — Cycling to school together, every Friday</title>
+<meta name="description" content="A parent-led bike bus encouraging families to cycle to Scotts Park Primary School in Bromley. We meet every Friday at 8:15am and depart at 8:25 sharp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16261f;
+    --paper:#fffdf4;
+    --sun:#ffd60a;
+    --sun-deep:#ffc300;
+    --grass:#2a9d5c;
+    --grass-deep:#1f7d47;
+    --road:#2b3a34;
+    --accent:#ff5d3b;
+    --shadow:rgba(22,38,31,.16);
+    --radius:22px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'DM Sans',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Fredoka',system-ui,sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+
+  .wrap{width:min(1040px,92vw);margin-inline:auto}
+  section{padding:clamp(3rem,7vw,5.5rem) 0}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:0;background:var(--ink)}
+  .hero__img{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/8;
+    min-height:300px;
+    background:
+      repeating-linear-gradient(135deg,#cfd6d2 0 28px,#c4ccc7 28px 56px);
+    display:flex;align-items:center;justify-content:center;
+    color:#5d6b64;
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(.9rem,2.5vw,1.2rem);
+    letter-spacing:.18em;text-transform:uppercase;
+  }
+  .hero__img::after{
+    content:"Image placeholder";
+    background:rgba(255,253,244,.85);
+    padding:.55rem 1.1rem;border-radius:100px;
+    box-shadow:0 6px 18px var(--shadow);
+  }
+  .hero__band{
+    background:linear-gradient(180deg,var(--sun),var(--sun-deep));
+    position:relative;
+    padding:clamp(2rem,5vw,3.2rem) 0 clamp(2.6rem,6vw,3.8rem);
+    border-bottom:5px solid var(--ink);
+  }
+  .hero__band::before{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:7px;
+    background:repeating-linear-gradient(90deg,var(--ink) 0 26px,transparent 26px 52px);
+    opacity:.18;
+  }
+  .pill{
+    display:inline-flex;align-items:center;gap:.5ch;
+    background:var(--ink);color:var(--sun);
+    font-family:'Fredoka',sans-serif;font-weight:600;
+    font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:.45rem 1rem;border-radius:100px;margin-bottom:1.1rem;
+  }
+  .hero h1{
+    font-size:clamp(2.7rem,8vw,5rem);font-weight:700;
+    color:var(--ink);
+  }
+  .hero h1 .spark{color:var(--accent)}
+  .hero__tag{
+    font-size:clamp(1.1rem,3vw,1.5rem);font-weight:500;
+    margin-top:.6rem;max-width:30ch;color:#3a4d44;
+  }
+  .hero__cta{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.8rem}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    --bg:var(--ink);--fg:var(--paper);
+    display:inline-flex;align-items:center;gap:.6ch;
+    background:var(--bg);color:var(--fg);
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;
+    text-decoration:none;padding:.85rem 1.5rem;border-radius:100px;
+    border:2.5px solid var(--ink);
+    box-shadow:0 4px 0 var(--ink);
+    transition:transform .12s ease,box-shadow .12s ease,background .2s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--ink)}
+  .btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+  .btn--wa{--bg:#25d366;--fg:#0b3d23;border-color:#0b3d23;box-shadow:0 4px 0 #0b3d23}
+  .btn--wa:hover{box-shadow:0 7px 0 #0b3d23}
+  .btn--ghost{--bg:transparent;--fg:var(--ink)}
+
+  /* ---------- Section headings ---------- */
+  .eyebrow{
+    font-family:'Fredoka',sans-serif;font-weight:600;
+    color:var(--grass-deep);letter-spacing:.16em;text-transform:uppercase;
+    font-size:.8rem;margin-bottom:.6rem;
+  }
+  h2{font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700}
+  .lead{font-size:clamp(1.05rem,2.4vw,1.25rem);max-width:60ch;margin-top:1rem;color:#33453c}
+
+  /* ---------- What is it ---------- */
+  .split{display:grid;gap:1.4rem;grid-template-columns:1fr;align-items:start}
+  @media(min-width:780px){.split{grid-template-columns:1.2fr .9fr}}
+  .flow-card{
+    background:#fff;border:2.5px solid var(--ink);border-radius:var(--radius);
+    padding:1.5rem 1.4rem;box-shadow:0 6px 0 var(--ink);
+  }
+  .flow-card h3{font-size:1.15rem;margin-bottom:.4rem}
+  .lane{display:flex;gap:.9rem;align-items:flex-start;padding:.7rem 0}
+  .lane + .lane{border-top:1.5px dashed #d4ddd6}
+  .lane .ico{
+    flex:0 0 auto;width:42px;height:42px;border-radius:12px;
+    display:grid;place-items:center;font-size:1.3rem;
+    background:var(--sun);border:2px solid var(--ink);
+  }
+  .lane .ico.green{background:var(--grass);color:#fff}
+
+  /* ---------- When & where ---------- */
+  .when{background:var(--grass-deep);color:#eafff2;border-radius:32px;padding:clamp(1.8rem,4vw,3rem);position:relative;overflow:hidden}
+  .when::after{
+    content:"";position:absolute;right:-40px;bottom:-40px;width:220px;height:220px;
+    border:18px solid rgba(255,255,255,.07);border-radius:50%;
+  }
+  .when h2{color:#fff}
+  .clock{
+    display:flex;flex-wrap:wrap;gap:1rem;margin:1.4rem 0 1.6rem;
+  }
+  .chip{
+    background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);
+    border-radius:16px;padding:.9rem 1.1rem;min-width:140px;
+  }
+  .chip .t{font-family:'Fredoka',sans-serif;font-size:1.8rem;font-weight:700;color:var(--sun);line-height:1}
+  .chip .l{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;opacity:.85;margin-top:.35rem}
+  .chip.sharp .t{color:#fff}
+  .where-links{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+  .w3w{
+    font-family:'Fredoka',sans-serif;font-weight:600;background:#001533;color:#fff;
+    border-radius:10px;padding:.6rem .9rem;text-decoration:none;display:inline-flex;gap:.4ch;
+    border:2px solid #fff;
+  }
+  .w3w span{color:#e11900}
+
+  /* ---------- Rules ---------- */
+  .rules-grid{display:grid;gap:1rem;grid-template-columns:1fr;margin-top:1.6rem}
+  @media(min-width:640px){.rules-grid{grid-template-columns:1fr 1fr}}
+  .rule{
+    background:#fff;border:2.5px solid var(--ink);border-radius:18px;
+    padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start;
+    box-shadow:0 5px 0 var(--ink);
+  }
+  .rule .tick{
+    flex:0 0 auto;width:30px;height:30px;border-radius:8px;background:var(--grass);
+    color:#fff;display:grid;place-items:center;font-weight:700;border:2px solid var(--ink);
+  }
+  .rule.req .tick{background:var(--accent)}
+  .rule.rec .tick{background:var(--sun);color:var(--ink)}
+  .rule strong{font-family:'Fredoka',sans-serif;font-weight:600;display:block}
+  .rule small{color:#5b6b63;font-size:.9rem}
+
+  .golden{
+    margin-top:2.2rem;background:var(--sun);border:3px solid var(--ink);
+    border-radius:24px;padding:clamp(1.4rem,3vw,2rem);box-shadow:0 8px 0 var(--ink);
+  }
+  .golden h3{font-size:clamp(1.3rem,3vw,1.7rem);margin-bottom:.2rem}
+  .golden ol{list-style:none;counter-reset:g;display:grid;gap:.7rem;margin-top:1rem}
+  @media(min-width:680px){.golden ol{grid-template-columns:repeat(3,1fr)}}
+  .golden li{
+    counter-increment:g;background:var(--ink);color:var(--sun);
+    border-radius:14px;padding:1.1rem;font-family:'Fredoka',sans-serif;
+    font-weight:600;font-size:1.15rem;position:relative;
+  }
+  .golden li::before{
+    content:counter(g);display:block;font-size:2rem;color:#fff;opacity:.35;line-height:1;margin-bottom:.2rem;
+  }
+
+  /* ---------- Join ---------- */
+  .join{text-align:center;background:var(--ink);color:var(--paper);border-radius:32px;padding:clamp(2.2rem,5vw,3.4rem)}
+  .join h2{color:#fff}
+  .join p{max-width:46ch;margin:.9rem auto 1.6rem;color:#cfe0d6}
+
+  /* ---------- Footer ---------- */
+  footer{padding:2.5rem 0 3rem;text-align:center;border-top:2px dashed #d4ddd6;margin-top:1rem}
+  footer .heart{color:var(--accent)}
+  footer p{color:#5b6b63;font-size:.95rem;margin-bottom:.9rem}
+
+  /* ---------- Reveal animation ---------- */
+  .rise{opacity:0;transform:translateY(18px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__img" role="img" aria-label="Placeholder image of the bike bus group cycling to school"></div>
+    <div class="hero__band">
+      <div class="wrap">
+        <span class="pill rise d1">🚲 Bromley · Parent-led</span>
+        <h1 class="rise d2">Scotts Park <span class="spark">Bike Bus</span></h1>
+        <p class="hero__tag rise d3">Cycling to school together, every Friday morning.</p>
+        <div class="hero__cta rise d4">
+          <a class="btn btn--wa" href="https://chat.whatsapp.com/CZzQNvmk6lS2kNA5gCl3H4?mode=gi_t" target="_blank" rel="noopener">Join the WhatsApp group →</a>
+          <a class="btn btn--ghost" href="#when">When &amp; where</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHAT IS IT -->
+  <section id="about">
+    <div class="wrap">
+      <p class="eyebrow">What is it?</p>
+      <h2>A whole convoy of kids, rolling to school.</h2>
+      <p class="lead">The Scotts Park Bike Bus is a parent-led group that cycles to Scotts Park Primary together as one happy, high-viz convoy. Safety in numbers, a fun start to the day, and one less car on the school run.</p>
+
+      <div class="split" style="margin-top:1.8rem">
+        <div class="flow-card">
+          <h3>How we ride</h3>
+          <div class="lane">
+            <div class="ico">🧒</div>
+            <div><strong>Kids on the pavement</strong><br><span style="color:#5b6b63">The children cycle together on the pavement, kept safely off the road.</span></div>
+          </div>
+          <div class="lane">
+            <div class="ico green">👋</div>
+            <div><strong>Parents on the road</strong><br><span style="color:#5b6b63">Grown-ups ride on the road alongside, shepherding the group and keeping everyone visible.</span></div>
+          </div>
+          <div class="lane">
+            <div class="ico">🤝</div>
+            <div><strong>We all stick together</strong><br><span style="color:#5b6b63">No one gets left behind — we move as one bus from start to finish.</span></div>
+          </div>
+        </div>
+        <div class="flow-card" style="background:var(--sun);box-shadow:0 6px 0 var(--ink)">
+          <h3>Why join?</h3>
+          <p style="margin-top:.4rem">It's free, it's friendly, and it's a brilliant way to build your child's confidence on a bike — plus a cheerful, healthy start to a Friday for the whole family.</p>
+          <a class="btn btn--wa" style="margin-top:1.2rem" href="https://chat.whatsapp.com/CZzQNvmk6lS2kNA5gCl3H4?mode=gi_t" target="_blank" rel="noopener">Hop on the bus →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHEN & WHERE -->
+  <section id="when">
+    <div class="wrap">
+      <div class="when">
+        <p class="eyebrow" style="color:var(--sun)">When &amp; where</p>
+        <h2>Every Friday. Wheels up at 8:25 sharp.</h2>
+        <div class="clock">
+          <div class="chip"><div class="t">8:15–8:20</div><div class="l">Meet &amp; gather</div></div>
+          <div class="chip sharp"><div class="t">8:25 AM</div><div class="l">Depart — on the dot!</div></div>
+        </div>
+        <p style="max-width:48ch;margin-bottom:1.2rem">Find us at the meeting point below. Arrive a few minutes early so we can set off together right on time.</p>
+        <div class="where-links">
+          <a class="btn" style="--bg:#fff;--fg:var(--ink);box-shadow:0 4px 0 #001533;border-color:#001533" href="https://maps.app.goo.gl/s27LDcU4RwknDqdL9" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+          <a class="w3w" href="https://what3words.com/unfair.chins.icons" target="_blank" rel="noopener"><span>///</span>unfair.chins.icons</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules">
+    <div class="wrap">
+      <p class="eyebrow">Before you ride</p>
+      <h2>A few simple rules to keep us safe.</h2>
+
+      <div class="rules-grid">
+        <div class="rule req">
+          <div class="tick">!</div>
+          <div><strong>Confident riders only</strong><small>Kids must be able to ride without stabilisers for at least 1 mile.</small></div>
+        </div>
+        <div class="rule req">
+          <div class="tick">!</div>
+          <div><strong>Parents accompany their kids</strong><small>Every child must be accompanied by their own grown-up.</small></div>
+        </div>
+        <div class="rule req">
+          <div class="tick">✓</div>
+          <div><strong>We all stick together</strong><small>We ride as one group, at the group's pace.</small></div>
+        </div>
+        <div class="rule rec">
+          <div class="tick">★</div>
+          <div><strong>Hi-viz recommended</strong><small>For parents and kids alike — be seen, be safe.</small></div>
+        </div>
+        <div class="rule rec">
+          <div class="tick">★</div>
+          <div><strong>Bells, please!</strong><small>Highly recommended — a friendly ring keeps everyone aware.</small></div>
+        </div>
+        <div class="rule rec">
+          <div class="tick">★</div>
+          <div><strong>Roadworthy bikes</strong><small>Brakes that work and tyres pumped up — give it a quick check.</small></div>
+        </div>
+      </div>
+
+      <div class="golden">
+        <p class="eyebrow" style="color:var(--ink)">The three golden rules</p>
+        <h3>Easy to remember, easy to follow.</h3>
+        <ol>
+          <li>No racing</li>
+          <li>Stick together</li>
+          <li>Have fun!</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section id="join">
+    <div class="wrap">
+      <div class="join">
+        <p class="eyebrow" style="color:var(--sun)">How to join</p>
+        <h2>Ready to ride with us?</h2>
+        <p>Joining is simple — hop into our WhatsApp group to say hello, ask anything, and get the latest on each Friday's ride.</p>
+        <a class="btn btn--wa" href="https://chat.whatsapp.com/CZzQNvmk6lS2kNA5gCl3H4?mode=gi_t" target="_blank" rel="noopener">Join the WhatsApp group →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p>Questions? Join the WhatsApp group and ask away — we're a friendly bunch.</p>
+      <a class="btn btn--ghost" href="https://chat.whatsapp.com/CZzQNvmk6lS2kNA5gCl3H4?mode=gi_t" target="_blank" rel="noopener">💬 Open the group</a>
+      <p style="margin-top:1.6rem">Scotts Park Bike Bus · Bromley · Made with <span class="heart">♥</span> by parents.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

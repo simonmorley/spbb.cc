@@ -1,4 +1,4 @@
-name = "spbb-cc"
+name = "spbb"
 compatibility_date = "2026-06-05"
 
 # Custom domain. Requires the spbb.cc zone to be active on the same Cloudflare

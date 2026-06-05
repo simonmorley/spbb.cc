@@ -1,6 +1,13 @@
 name = "spbb-cc"
 compatibility_date = "2026-06-05"
 
+# Custom domain. Requires the spbb.cc zone to be active on the same Cloudflare
+# account; `wrangler deploy` then provisions the hostname + cert automatically.
+# (Must stay above [assets] — TOML would otherwise nest it inside that table.)
+routes = [
+  { pattern = "spbb.cc", custom_domain = true }
+]
+
 # Static-assets-only Worker (no Worker script). `wrangler deploy` uploads ./public
 # and serves it directly. _headers and _redirects in that dir are honoured.
 [assets]

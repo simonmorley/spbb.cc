@@ -158,6 +158,51 @@
   }
   .w3w span{color:#e11900}
 
+  /* ---------- Route ---------- */
+  .route-card{
+    margin-top:1.8rem;background:#fff;border:2.5px solid var(--ink);
+    border-radius:var(--radius);padding:clamp(1.4rem,3vw,2rem);box-shadow:0 6px 0 var(--ink);
+  }
+  .route-meta{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1.6rem}
+  .tag{
+    display:inline-flex;align-items:center;gap:.4ch;background:var(--paper);
+    border:2px solid var(--ink);border-radius:100px;padding:.4rem .85rem;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:.85rem;
+  }
+  .tag.g{background:var(--grass);color:#fff;border-color:var(--ink)}
+
+  .line{list-style:none;position:relative}
+  .stop{position:relative;display:flex;gap:1rem;padding-bottom:1.7rem}
+  .stop:last-child{padding-bottom:0}
+  .stop:not(:last-child)::before{
+    content:"";position:absolute;left:9.75px;top:1.5rem;bottom:-.1rem;width:3px;
+    background:#cfe0d6;border-radius:3px;
+  }
+  .node{
+    flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--sun);
+    border:3px solid var(--ink);margin-top:.15rem;position:relative;z-index:1;
+  }
+  .stop.start .node{background:var(--grass)}
+  .stop.end .node{background:var(--accent)}
+  .stop-top{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .8rem}
+  .stop-time{
+    font-family:'Fredoka',sans-serif;font-weight:700;color:var(--grass-deep);
+    font-size:1.05rem;min-width:3.6em;
+  }
+  .stop-name{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.12rem}
+  .stop-kind{
+    font-family:'Fredoka',sans-serif;font-size:.66rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:.22rem .6rem;border-radius:100px;
+    background:var(--ink);color:var(--sun);border:1.5px solid var(--ink);
+  }
+  .stop:not(.start):not(.end) .stop-kind{background:var(--grass);color:#fff}
+  .stop-sub{margin-top:.35rem;color:#5b6b63;font-size:.93rem}
+  .stop-sub a{color:var(--grass-deep);font-weight:600}
+  .route-note{
+    margin-top:1.7rem;background:var(--sun);border:2.5px solid var(--ink);
+    border-radius:16px;padding:1rem 1.2rem;font-size:.95rem;
+  }
+
   /* ---------- Rules ---------- */
   .rules-grid{display:grid;gap:1rem;grid-template-columns:1fr;margin-top:1.6rem}
   @media(min-width:640px){.rules-grid{grid-template-columns:1fr 1fr}}
@@ -276,6 +321,70 @@
           <a class="btn" style="--bg:#fff;--fg:var(--ink);box-shadow:0 4px 0 #001533;border-color:#001533" href="https://maps.app.goo.gl/s27LDcU4RwknDqdL9" target="_blank" rel="noopener">📍 Open in Google Maps</a>
           <a class="w3w" href="https://what3words.com/unfair.chins.icons" target="_blank" rel="noopener"><span>///</span>unfair.chins.icons</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUTE -->
+  <section id="route">
+    <div class="wrap">
+      <p class="eyebrow">The route</p>
+      <h2>One line, all the way to school.</h2>
+      <p class="lead">We follow the same friendly route every Friday — start at the meeting point and roll together down to Scotts Park Primary. Live a little closer? Hop on at one of the stops along the way.</p>
+      <div class="route-card">
+        <div class="route-meta">
+          <span class="tag">🚲 0.9 miles</span>
+          <span class="tag">⏱️ ~12 min at kid pace</span>
+          <span class="tag g">⛰️ Mostly flat</span>
+        </div>
+        <ol class="line">
+          <li class="stop start">
+            <span class="node"></span>
+            <div class="stop-body">
+              <div class="stop-top">
+                <span class="stop-time">8:25</span>
+                <span class="stop-name">The Meet</span>
+                <span class="stop-kind">Wheels up</span>
+              </div>
+              <p class="stop-sub">Meeting point at <a href="https://what3words.com/unfair.chins.icons" target="_blank" rel="noopener">///unfair.chins.icons</a> (Sundridge Park end). Gather from 8:15.</p>
+            </div>
+          </li>
+          <li class="stop">
+            <span class="node"></span>
+            <div class="stop-body">
+              <div class="stop-top">
+                <span class="stop-time">~8:29</span>
+                <span class="stop-name">First pickup</span>
+                <span class="stop-kind">Join here</span>
+              </div>
+              <p class="stop-sub"><a href="https://what3words.com/ropes.limp.fires" target="_blank" rel="noopener">///ropes.limp.fires</a> · Be ready and waiting — if you're not here, we roll on.</p>
+            </div>
+          </li>
+          <li class="stop">
+            <span class="node"></span>
+            <div class="stop-body">
+              <div class="stop-top">
+                <span class="stop-time">~8:33</span>
+                <span class="stop-name">Second pickup</span>
+                <span class="stop-kind">Join here</span>
+              </div>
+              <p class="stop-sub"><a href="https://what3words.com/market.filled.nights" target="_blank" rel="noopener">///market.filled.nights</a> · Same again — be there or we carry on without you.</p>
+            </div>
+          </li>
+          <li class="stop end">
+            <span class="node"></span>
+            <div class="stop-body">
+              <div class="stop-top">
+                <span class="stop-time">~8:37</span>
+                <span class="stop-name">Scotts Park Primary</span>
+                <span class="stop-kind">Arrive</span>
+              </div>
+              <p class="stop-sub">Orchard Road, Bromley BR1 2PR. Bikes parked, ready for the bell.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="route-note">⏰ <strong>Please be on time.</strong> At the pickup stops we don't wait — if you're not there, we'll keep rolling and you can catch us further along or meet us at school. Times are approximate, so aim to be at your stop a couple of minutes early and listen for the bells!</p>
+        <a class="btn" style="margin-top:1.4rem;--bg:#fff;--fg:var(--ink);box-shadow:0 4px 0 #001533;border-color:#001533" href="https://maps.app.goo.gl/s27LDcU4RwknDqdL9" target="_blank" rel="noopener">🗺️ See the route on Google Maps</a>
       </div>
     </div>
   </section>

@@ -20,7 +20,7 @@ Everything lives in `public/index.html`:
 
 These are hardcoded in multiple places — update all occurrences together:
 - **WhatsApp group link** (`https://chat.whatsapp.com/CZzQNvmk6lS2kNA5gCl3H4?mode=gi_t`) appears in the hero, about, join, and footer sections.
-- **Meeting time** (Fridays, meet 8:15–8:20, depart 8:25) and the meeting point (Google Maps + what3words `unfair.chins.icons`) live in the `#when` section.
+- **Meeting time** (Fridays, meet 8:15–8:20, depart 8:25) and the meeting point (Google Maps + what3words `unfair.chins.icons`) live in the `#when` section, and the meeting point + Google Maps link are repeated in the `#route` section. The route timeline also carries per-stop what3words links (`ropes.limp.fires`, `market.filled.nights`).
 - **Contact email** (`scottsparkbikebus@gmail.com`) appears in the footer (text link + "Email us" button).
 
 ## Working on it

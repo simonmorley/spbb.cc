@@ -1,0 +1,28 @@
+# Cloudflare Pages headers — https://developers.cloudflare.com/pages/configuration/headers/
+
+# HTML: always revalidate so content edits go live immediately.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Content-hashed assets (filename changes when content changes) can cache forever.
+# Put fingerprinted files here, e.g. /assets/app.4f2a.css.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Self-hosted fonts effectively never change for a given filename.
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# Raw media at fixed filenames: cache a day so a same-name replacement still
+# refreshes reasonably soon. Move to /assets/ with a hash for long-term caching.
+/*.png
+  Cache-Control: public, max-age=86400
+/*.jpg
+  Cache-Control: public, max-age=86400
+/*.webp
+  Cache-Control: public, max-age=86400
+/*.svg
+  Cache-Control: public, max-age=86400
